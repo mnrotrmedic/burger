@@ -1,26 +1,14 @@
 const express = require("express");
 const router = express.Router();
-
 const burger = require("../models/burger")
 
 router.get("/", function (req, res) {
     burger.all(function (data) {
-        var hbsObject = {
-            burgers: data
-        }
-        res.render("index", hbsObject);
+        var hbsData = {burger: data}
+        res.render("index", hbsData);
     })
 })
 
-router.post("/", function (req, res) {
-    burger.create([
-        "burger_name", "devoured"
-    ],
-        [
-            req.body.burger_name, req.body.devoured
-        ], function () {
-            res.render("index")
-        })
-})
+
 
 module.exports = router;

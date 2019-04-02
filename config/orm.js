@@ -29,18 +29,20 @@ function objToSql(ob) {//function to convert object key/value pairs to SQL synta
 }
 
 var orm = {
-    selectAll: function (tableInput) {
+    selectAll: function (tableInput, callback) {
         var queryString = "SELECT * FROM ??";
         connection.query(queryString, [tableInput], function (err, result) {
             if (err) throw err;
             console.log(result);
+            callback(result);
         });
     },
-    insertOne: function (burger_name) {
+    insertOne: function (burger_name, callback) {
         var queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (??, false)";
         connection.query(queryString, [burger_name], function (err, result) {
             if (err) throw err;
             console.log(result);
+            callback(result)
         });
     },
     updateOne: function (devoured, id) {

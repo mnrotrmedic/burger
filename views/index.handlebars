@@ -1,0 +1,34 @@
+{{!-- Jumbotron, I'm not very creative --}}
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h2 class="text-center">Handle-Burgers</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Main body --}}
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    {{!-- <th>ID</th> --}}
+                    <th>Burger Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{#each burgers}}</td>
+                    {{/each}}
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
