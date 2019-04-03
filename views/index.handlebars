@@ -1,34 +1,86 @@
 {{!-- Jumbotron, I'm not very creative --}}
 <div class="row">
     <div class="col-2"></div>
-    <div class="col-8">
+    <div class="col-10">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h2 class="text-center">Handle-Burgers</h2>
             </div>
         </div>
     </div>
+    <div class="col-2"></div>
 </div>
 
 {{!-- Main body --}}
 <div class="row">
     <div class="col-2"></div>
-    <div class="col-8">
+    <div class="col-4">
+        <h3>Burgers to devour</h3>
         <table class="table">
             <thead class="thead">
                 <tr>
-                    {{!-- <th>ID</th> --}}
+                    <th>Burger Name</th>
+                    <th>Eat it</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each burger}}
+                {{#unless devoured}}
+                <tr>
+                    <td>{{burger_name}}</td>
+                    <td>
+                        <button class="eatIt" data-id="{{id}}" data-eaten="{{devoured}}">
+                            {{#unless devoured}}Eat Me!{{/unless}}
+                        </button>
+                    </td>
+                </tr>
+                {{/unless}}
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <h3>Burgers you've already devoured</h3>
+        <table class="table">
+            <thead class="thead">
+                <tr>
                     <th>Burger Name</th>
                 </tr>
             </thead>
             <tbody>
+                {{#each burger}}
+                {{#if devoured}}
                 <tr>
-                    <td>{{#each burgers}}</td>
-                    {{/each}}
-
+                    <td>{{burger_name}}</td>
                 </tr>
+                {{/if}}
+                {{/each}}
 
             </tbody>
         </table>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h3>Add a burger to eat</h3>
+        <form class="create-form">
+
+            <div class="form-group">
+                <label for="bu">Burger Name</label>
+                <input type="text" id="bu" name="burgerName">
+            </div>
+
+            <div class="form-group">
+                <label for="sleepy">Devoured?</label><br>
+                <input type="radio" name="devoured" value="1" checked> Devoured<br>
+                <input type="radio" name="devoured" value="0"> Got try it!
+            </div>
+
+            <button type="submit">Add the Burger</button>
+        </form>
     </div>
 </div>

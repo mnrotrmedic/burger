@@ -20,11 +20,9 @@ function objToSql(ob) {//function to convert object key/value pairs to SQL synta
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             }
-
             arr.push(key + "=" + value);
         }
     }
-
     return arr.toString();
 }
 
@@ -45,11 +43,22 @@ var orm = {
             callback(result)
         });
     },
-    updateOne: function (devoured, id) {
-        var queryString = "UPDATE burgers SET devoured = ?? WHERE ID = ??";
-        connection.query(queryString, [devoured, id], function (err, result) {
-            if (err) throw err;
-            console.log(result);
+
+    updateOne: function (table, objColVals, condition, cb) {
+        var queryString = "UPDATE " + table;
+
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += "id = " + objToSql(condition);
+
+        console.log(queryString);
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
+
+            cb(result);
         });
     },
 };
