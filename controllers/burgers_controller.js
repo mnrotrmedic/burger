@@ -10,10 +10,11 @@ router.get("/", function (req, res) {
 }) //END GET Route
 
 router.post("/api/burgers", function (req, res) {
+    console.log(req.body);
     burger.create([
-        "burgerName", "devoured"
+        "burger_name", "devoured"
     ], [
-            req.body.name, req.body.devoured
+            req.body.burgerName, req.body.devoured
         ], function (result) {
             res.json(result);
         })
@@ -21,14 +22,14 @@ router.post("/api/burgers", function (req, res) {
 
 router.put("/api/burgers/:id", function (req, res) {
 
-    var condition = parseInt(req.params.id);
+    var condition = "id = " + req.params.id;
 
     console.log("condition", condition) //eaten id = 5
     console.log(typeof condition);
 
     burger.update({
         devoured: req.body.devoured
-    }), condition, function (result) {
+    }, condition, function (result) {
         console.log(result)
         if (result.changedRows == 0) {
             // If no rows were changed, then the ID must not exist, so 404
@@ -36,7 +37,7 @@ router.put("/api/burgers/:id", function (req, res) {
         } else {
             res.status(200).end();
         }
-    }
+    })
 }) //END PUT Route
 
 

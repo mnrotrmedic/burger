@@ -23,7 +23,7 @@ $(document).ready(function () {
 
         var id = $(this).data("id"); //id from dynamically created button
         var hasEaten = { //object created to pass in new value to AJAX call
-            devoured: /*$(this).data("eaten")*/ 1
+            devoured: /*$(this).data("eaten")*/ true
         };
         console.log(id); //TODO comment this out...
         console.log(hasEaten); //TODO comment this out...
