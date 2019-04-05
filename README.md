@@ -6,3 +6,5 @@ Simple functionality:
   includes rendering page using handlebars,
    ajax and express routes to GET, PUT & PUT routes with associated database calls
    database is utilized via a custom ORM
+
+App deployed to heroku to demonstrate full functionality. Link: https://guarded-eyrie-12042.herokuapp.com/
